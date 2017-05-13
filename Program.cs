@@ -5,6 +5,10 @@ using System.Net.Http.Headers;
 
 namespace WebAPIClient
 {
+    public class repo
+    {
+        public string name;
+    }
     class Program
     {
         static void Main(string[] args)
