@@ -2,8 +2,9 @@ using System;
 
 namespace WebAPIClient
 {
-  public class repo
+  public class Repository
   {
-    public string name;
+    [DataMember(Name="name")]
+    public string Name;
   }
 }
