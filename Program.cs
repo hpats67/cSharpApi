@@ -13,7 +13,17 @@ namespace WebAPIClient
         {
             var repositories = ProcessRepositories().Result;
 
-            foreach (var repo in repositories) Console.WriteLine(repo.Name);
+            foreach (var repo in repositories) 
+            {
+                Console.WriteLine(repo.Name);
+                Console.WriteLine(repo.Description);
+                Console.WriteLine(repo.GitHubHomeUrl);
+                Console.WriteLine(repo.Homepage);
+                Console.WriteLine(repo.Watchers);
+                Console.WriteLine(repo.LastPush);
+                Console.WriteLine();
+            }
+
         }
         private static async Task<List<Repository>> ProcessRepositories()
         {
@@ -24,6 +34,7 @@ namespace WebAPIClient
                 new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
             client.DefaultRequestHeaders.Add("User-Agent", ".Net Foundation Repository Reporter");
             
+            var stringTast = client.GetStringAsync("https://api.github.com/orgs/dotnet/repos");
             var streamTask = client.GetStreamAsync("https://api.github.com/orgs/dotnet/repos");
             var repositories = serializer.ReadObject(await streamTask) as List<Repository>;
 
